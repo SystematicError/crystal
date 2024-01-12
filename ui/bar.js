@@ -1,6 +1,7 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js"
-import Battery from "resource:///com/github/Aylur/ags/service/battery.js";
-import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
+import Battery from "resource:///com/github/Aylur/ags/service/battery.js"
+import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js"
+import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js'
 
 function Workspaces() {
     return Widget.Box({
@@ -30,6 +31,17 @@ function Clock() {
     })
 }
 
+function SysTray() {
+    return Widget.Box({
+        children: SystemTray.bind("items").transform(items => items.map(item => Widget.Button({
+            child: Widget.Icon().bind("icon", item, "icon"),
+            tooltipMarkup: item.bind("tooltip-markup"),
+            onPrimaryClick: (_, event) => item.activate(event),
+            onSecondaryClick: (_, event) => item.openMenu(event),
+        })))
+    })
+}
+
 function BatteryInfo() {
     return Widget.Icon({
         icon: Battery.bind("icon_name")
@@ -53,6 +65,7 @@ function Right() {
         hpack: "end",
 
         children: [
+            SysTray(),
             BatteryInfo()
         ]
     })
