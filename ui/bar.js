@@ -23,11 +23,16 @@ function Clock() {
 
         const raw_hours = date.getHours()
 
+        const day = date.getDay()
+        const month =
+            ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            [date.getMonth()]
+
         const hours = raw_hours <= 12 ? raw_hours == 0 ? 12 : raw_hours : raw_hours - 12
         const minutes = `${date.getMinutes()}`.padStart(2, "0")
         const meridiem = raw_hours < 12 ? "AM" : "PM"
 
-        self.label = `${hours}:${minutes} ${meridiem}`
+        self.label = `${day} ${month}   ${hours}:${minutes} ${meridiem}`
     })
 }
 
