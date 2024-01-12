@@ -19,7 +19,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     packages.${system}.default = pkgs.writeShellScriptBin "ags" ''
-      ${ags.packages.${system}.default}/bin/ags -c ${./.}/config.js
+      ${ags.packages.${system}.default}/bin/ags -c ${./.}/config.js $@
     '';
   };
 }
