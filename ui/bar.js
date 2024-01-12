@@ -24,7 +24,7 @@ function Clock() {
         const raw_hours = date.getHours()
 
         const hours = raw_hours <= 12 ? raw_hours == 0 ? 12 : raw_hours : raw_hours - 12
-        const minutes = date.getMinutes()
+        const minutes = `${date.getMinutes()}`.padStart(2, "0")
         const meridiem = raw_hours < 12 ? "AM" : "PM"
 
         self.label = `${hours}:${minutes} ${meridiem}`
