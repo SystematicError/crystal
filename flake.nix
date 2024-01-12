@@ -10,10 +10,16 @@
     };
   };
 
-  outputs = {ags, ...}: let
+  outputs = {
+    nixpkgs,
+    ags,
+    ...
+  }: let
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
-    # Kinda pointless right now, will wrap config into ags in the future
-    packages.${system}.default = ags.packages.${system}.default;
+    packages.${system}.default = pkgs.writeShellScriptBin "ags" ''
+      ${ags.packages.${system}.default}/bin/ags -c ${./.}/config.js
+    '';
   };
 }
