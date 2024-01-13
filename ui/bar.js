@@ -47,16 +47,13 @@ function SysTray() {
 function BatteryInfo() {
     return Widget.Icon({
         class_name: "battery",
+        size: 16,
         icon: Battery.bind("icon_name")
     })
 }
 
 function Left() {
-    return Widget.Box({
-        children: [
-            Workspaces()
-        ]
-    })
+    return Workspaces()
 }
 
 function Center() {
