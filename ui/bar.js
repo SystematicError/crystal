@@ -5,6 +5,7 @@ import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js'
 
 function Workspaces() {
     return Widget.Box({
+        class_name: "workspaces",
         children: Hyprland.bind("workspaces").transform(workspaces => {
             workspaces.sort((a, b) => a.id - b.id)
 
@@ -18,7 +19,7 @@ function Workspaces() {
 }
 
 function Clock() {
-    return Widget.Label().poll(10000, self => {
+    return Widget.Label({class_name: "clock"}).poll(10000, self => {
         const date = new Date()
 
         const raw_hours = date.getHours()
@@ -38,6 +39,7 @@ function Clock() {
 
 function SysTray() {
     return Widget.Box({
+        class_name: "systray",
         children: SystemTray.bind("items").transform(items => items.map(item => Widget.Button({
             child: Widget.Icon().bind("icon", item, "icon"),
             tooltipMarkup: item.bind("tooltip-markup"),
@@ -49,16 +51,14 @@ function SysTray() {
 
 function BatteryInfo() {
     return Widget.Icon({
+        class_name: "battery",
+        size: 16,
         icon: Battery.bind("icon_name")
     })
 }
 
 function Left() {
-    return Widget.Box({
-        children: [
-            Workspaces()
-        ]
-    })
+    return Workspaces()
 }
 
 function Center() {
@@ -84,6 +84,7 @@ function Bar(monitor) {
         anchor: ["top", "left", "right"],
 
         child: Widget.CenterBox({
+            class_name: "bar",
             start_widget: Left(),
             center_widget: Center(),
             end_widget: Right()

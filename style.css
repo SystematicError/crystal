@@ -1,3 +1,17 @@
+* {
+    all: unset;
+    font-family: "Inter";
+}
+
+.bar {
+    background-color: #0f0f0f;
+    padding: 0.5em 1.2em;
+}
+
+.bar .clock {
+    font-weight: 700;
+}
+
 .active-ws {
     color: #5baaea;
 }
