@@ -9,6 +9,7 @@ function Launcher(monitor) {
     }
 
     const Entry = Widget.Entry({
+        class_name: "entry",
         placeholder_text: "Search for an app...",
 
         on_accept: ({text}) => {
@@ -20,7 +21,8 @@ function Launcher(monitor) {
         },
 
         on_change: ({text}) => {
-            Results.children = query(text).map(result => Widget.EventBox({
+            Results.children = query(text).slice(0, 5).map(result => Widget.EventBox({
+                class_name: "result",
                 cursor: result.action ? "pointer" : "default",
                 on_primary_click: () => {
                     if (result.action) {result.action()}
@@ -53,28 +55,23 @@ function Launcher(monitor) {
     })
 
     const Results = Widget.Box({
+        class_name: "results",
         vertical: true,
     })
 
     return Widget.Window({
         monitor,
         name: `launcher${monitor}`,
-        // anchor: ["top", "left"],
         focusable: true,
         popup: true,
 
         child: Widget.Box({
+            class_name: "launcher",
             vertical: true,
 
             children: [
                 Entry,
-                
-                Widget.Scrollable({
-                    hscroll: "never",
-                    vscroll: "automatic",
-
-                    child: Results
-                })
+                Results
             ]
         })
     })

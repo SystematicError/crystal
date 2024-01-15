@@ -15,3 +15,13 @@
 .active-ws {
     color: #5baaea;
 }
+
+.launcher {
+    background-color: #0f0f0f;
+}
+
+.launcher .entry {
+    padding: 1em;
+    background-color: #1f1f1f;
+}
+
