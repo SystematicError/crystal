@@ -1,7 +1,8 @@
 import Applications from "resource:///com/github/Aylur/ags/service/applications.js"
 
-function app_provider(text) {
-    console.log(Applications.query(text))
+export default (text) => {
+    return Applications.query(text).map(result => {
+        return {title: result.name}
+    })
 }
 
-export default app_provider
