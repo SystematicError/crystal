@@ -3,9 +3,11 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js"
 
 import query from "./query.js"
 
-function Launcher(monitor) {
+function Launcher() {
     function close() {
-        App.closeWindow(`launcher${monitor}`)
+        App.closeWindow("launcher")
+        Entry.set_text("")
+        Results.children = []
     }
 
     const Entry = Widget.Entry({
@@ -60,10 +62,10 @@ function Launcher(monitor) {
     })
 
     return Widget.Window({
-        monitor,
-        name: `launcher${monitor}`,
+        name: "launcher",
         focusable: true,
         popup: true,
+        visible: false,
 
         child: Widget.Box({
             class_name: "launcher",

@@ -17,5 +17,5 @@ Utils.monitorFile(
 
 export default {
     style: `${App.configDir}/style.css`,
-    windows: [Bar(0), Launcher(0)]
+    windows: [Bar(0), Launcher()]
 }
