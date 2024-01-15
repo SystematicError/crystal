@@ -2,6 +2,7 @@ import App from "resource:///com/github/Aylur/ags/app.js"
 import * as Utils from "resource:///com/github/Aylur/ags/utils.js"
 
 import Bar from "./bar/bar.js"
+import Launcher from "./launcher/launcher.js"
 
 // Temporary, just to help development
 // TODO: Remove autoreload css

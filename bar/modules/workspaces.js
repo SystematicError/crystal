@@ -4,6 +4,7 @@ import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js"
 function Workspaces() {
     return Widget.Box({
         class_name: "workspaces",
+
         children: Hyprland.bind("workspaces").transform(workspaces => {
             workspaces.sort((a, b) => a.id - b.id)
 
