@@ -1,9 +1,9 @@
 import app_provider from "./providers/app.js"
-import echo_provider from "./providers/echo.js"
+import run_provider from "./providers/run.js"
 
 const fallback_provider = app_provider
 const special_providers = {
-    "~": echo_provider
+    "$": run_provider
 }
 
 function query(text) {
