@@ -4,11 +4,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js"
 import query from "./query.js"
 
 function Launcher() {
-    function close() {
-        App.closeWindow("launcher")
-        Entry.set_text("")
-        Results.children = []
-    }
+    const WINDOW_NAME = "launcher"
 
     const Entry = Widget.Entry({
         class_name: "entry",
@@ -18,7 +14,7 @@ function Launcher() {
             if (Results.children[0]) {
                 Results.children[0].on_primary_click()
             } else {
-                close()
+                App.closeWindow(WINDOW_NAME)
             }
         },
 
@@ -28,7 +24,7 @@ function Launcher() {
                 cursor: result.action ? "pointer" : "default",
                 on_primary_click: () => {
                     if (result.action) {result.action()}
-                    close()
+                    App.closeWindow(WINDOW_NAME)
                 },
 
                 child: Widget.Box({
@@ -61,8 +57,8 @@ function Launcher() {
         vertical: true,
     })
 
-    return Widget.Window({
-        name: "launcher",
+    const Window = Widget.Window({
+        name: WINDOW_NAME,
         focusable: true,
         popup: true,
         visible: false,
@@ -77,6 +73,15 @@ function Launcher() {
             ]
         })
     })
+
+    App.connect("window-toggled", (_, name, status) => {
+        if (name == WINDOW_NAME && status == false) {
+            Entry.set_text("")
+            Results.children = []
+        }
+    })
+
+    return Window
 }
 
 export default Launcher
