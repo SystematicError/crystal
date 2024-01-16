@@ -4,7 +4,6 @@ export default (text) => {
     return Applications.query(text).map(result => {
         return {
             title: result.name,
-            description: result.description,
             icon: result.icon_name,
             action: () => result.launch()
         }

@@ -19,7 +19,7 @@ function Launcher() {
         },
 
         on_change: ({text}) => {
-            Results.children = query(text).slice(0, 5).map(result => Widget.EventBox({
+            Results.children = query(text).slice(0, 6).map(result => Widget.EventBox({
                 class_name: "result",
                 cursor: result.action ? "pointer" : "default",
                 on_primary_click: () => {
@@ -31,21 +31,10 @@ function Launcher() {
                     children: [
                         Widget.Icon(result.icon || ""),
 
-                        Widget.Box({
-                            vertical: true,
-
-                            children: [
-                                Widget.Label({
-                                    hpack: "start",
-                                    label: result.title
-                                }),
-
-                                Widget.Label({
-                                    hpack: "start",
-                                    label: result.description || ""
-                                }),
-                            ]
-                        })
+                        Widget.Label({
+                            hpack: "start",
+                            label: result.title
+                        }),
                     ]
                 })
             }))
