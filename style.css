@@ -16,6 +16,10 @@
     color: #5baaea;
 }
 
+.battery {
+    padding-right: 0.5em;
+}
+
 .launcher {
     background-color: #0f0f0f;
 }
