@@ -18,7 +18,7 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    packages.${system}.default = pkgs.writeShellScriptBin "ags" ''
+    packages.${system}.default = pkgs.writeShellScriptBin "crystal" ''
       ${ags.packages.${system}.default}/bin/ags -c ${./.}/config.js $@
     '';
   };
