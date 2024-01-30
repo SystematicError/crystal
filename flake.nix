@@ -11,6 +11,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     ags,
     ...
@@ -21,5 +22,9 @@
     packages.${system}.default = pkgs.writeShellScriptBin "crystal" ''
       ${ags.packages.${system}.default}/bin/ags -c ${./.}/config.js $@
     '';
+
+    devShells.${system}.default = pkgs.mkShell {
+      packages = builtins.attrValues self.outputs.packages.${system};
+    };
   };
 }
